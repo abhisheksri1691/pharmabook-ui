@@ -60,48 +60,7 @@ export default function Home() {
 
       </div>
       <Table></Table>
-      <div className=" bg-slate-300 m-3 p-5 flex justify-between sticky bottom-16">
-
-      <label className="font-bold">Terms and Conditions</label>
-
-
-        <table className=" table-auto">
-        <tfoot>
-            <tr>
-            <th className=" pl-4 pr-3  text-left   text-sm font-normal">
-            Subtotal:
-            </th>
-            <td className=" pl-3 pr-6  text-right text-sm  sm:pr-0">1255.00</td>
-            </tr>
-            <tr>
-            <th   className=" text-left pl-4 pr-3   text-sm font-normal">
-            CGST:
-            </th>
-            <td className="pl-3   pr-6  text-sm text-right   sm:pr-0">10.00</td>
-            </tr>
-            <tr>
-            <th   className=" pl-4   pr-3   text-left   text-sm font-normal  sm:table-cell">
-            SGST:
-            </th>
-            <td className="pl-3 pr-6   text-right text-sm  sm:pr-0">10.00</td>
-            </tr>
-            <tr>
-            <th   className=" pl-4 pr-3   text-left   text-sm font-normal  sm:table-cell">
-            RoundOff:
-            </th>
-            <td className="pl-3 pr-6   text-right text-sm sm:pr-0">0.45</td>
-            </tr>
-            <tr>
-            <th className="pl-4 pr-3    text-left   text-lg font-semibold  sm:table-cell">
-            Grand Total:
-            </th>
-            <td className="pl-3 pr-6  text-right text-lg font-semibold  sm:pr-0">10,500.00</td>
-            </tr>
-            </tfoot>
-        </table>
-        
-
-      </div>
+      
 
 
       {/* <footer>I am footer</footer> */}
