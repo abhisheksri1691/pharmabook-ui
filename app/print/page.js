@@ -2,14 +2,21 @@
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 
-export default function Print() {
+export default function Print({ tdata }) {
 
     const contentRef = useRef("");
     const reactToPrintFn = useReactToPrint({ contentRef });
+
+    function handlePrint() {
+        console.log("Hi i am pap")
+
+        reactToPrintFn()
+
+    }
     return (
         <>
-            <div ref={contentRef}>
-                <div className=" border lg:m-4 sm:m-4 border-black">
+            <div className="absolute top-0 left-0 h-full w-full bg-black/50 backdrop-blur-md z-10">
+                <div ref={contentRef} className=" border lg:mt-32 bg-white shadow-md lg:m-4 sm:m-4 border-black">
                     <div className="flex justify-between lg:p-4 sm:p-2 md:p-1">
                         <div className="lg:text-base sm:text-xs">
                             <h1 className="lg:text-green-400 sm:text-amber-800">SHIVAY MEDICAL STORE (A UNIT OF ABC)</h1>
@@ -83,34 +90,28 @@ export default function Print() {
                             </tr>
                         </thead>
                         <tbody className="text-center">
-                            <tr>
-                                <td>1</td>
-                                <td className="border-l border-black">Paracitomol fsfffsdfsffsa</td>
-                                <td className="border-l border-black">1 pack</td>
-                                <td className="border-l border-black">300480</td>
-                                <td className="border-l border-black">JHHJHJHJ</td>
-                                <td className="border-l border-black">01/28</td>
-                                <td className="border-l border-black">1</td>
-                                <td className="border-l border-black">100</td>
-                                <td className="border-l border-black">10.00</td>
-                                <td className="border-l border-black">10.00</td>
-                            </tr>
+                            {
+                                tdata.map((tableData) => {
+                                    return (
+                                        <tr  key={tableData.id}>
+                                            <td>{tableData.id}</td>
+                                            <td className="border-l border-black">{tableData.item}</td>
+                                            <td className="border-l border-black">1 pack</td>
+                                            <td className="border-l border-black">300480</td>
+                                            <td className="border-l border-black">JHHJHJHJ</td>
+                                            <td className="border-l border-black">01/28</td>
+                                            <td className="border-l border-black">1</td>
+                                            <td className="border-l border-black">100</td>
+                                            <td className="border-l border-black">{tableData.discount}</td>
+                                            <td className="border-l border-black">{tableData.amount}</td>
+                                        </tr>
+                                    )
+                                })
+                        }
 
-                            <tr>
-                                <td>2</td>
-                                <td className="border-l border-black">Paracitomol</td>
-                                <td className="border-l border-black">1 pack</td>
-                                <td className="border-l border-black">300480</td>
-                                <td className="border-l border-black">JHHJHJHJ</td>
-                                <td className="border-l border-black">01/28</td>
-                                <td className="border-l border-black">1</td>
-                                <td className="border-l border-black">100</td>
-                                <td className="border-l border-black">10.00</td>
-                                <td className="border-l border-black">10.00</td>
-                            </tr>
                         </tbody>
                     </table>
-                    <hr className="border-black"/>
+                    <hr className="border-black" />
                     <div className=" flex justify-between px-2">
                         <div>
                             <h3 className="font-semibold lg:text-base sm:text-xs">Terms and Conditions</h3>
@@ -130,19 +131,20 @@ export default function Print() {
 
                         </div>
                     </div>
-                    <hr className="border-black"/>
+                    <hr className="border-black" />
                     <div className="text-center text-gray-600 text-sm">
                         <p>Thank you for your purchase!</p>
                         <p>* This is a computer-generated invoice.</p>
                     </div>
 
                 </div>
+                <div className="text-center">
+                    <button onClick={handlePrint} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                        Print
+                    </button>
+                </div>
             </div>
-            <div className="w-full text-center">
-                <button onClick={() => reactToPrintFn()} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
-                    Print
-                </button>
-            </div>
+
         </>
     );
 }

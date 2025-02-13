@@ -4,7 +4,7 @@ import Print from "../print/page";
 import { Button } from "@headlessui/react";
 import { useReactToPrint } from "react-to-print";
 
-export default function Table() {
+export default function TableComponent() {
 
   const [showOverlay, setShowOverlay] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -131,50 +131,35 @@ export default function Table() {
   };
   return (
     <>
-      <div className={` sticky top-72 m-3 p-1 bg-slate-300 ${showOverlay ? 'blur-lg' : ''}`}>
-        <div className="h-60 overflow-clip border-separate border border-solid flex flex-col">
-          <table className="table-fixed border-separate border border-slate-400">
-            <thead className=" bg-slate-300 border-slate-400">
-              <tr>
-                <th className="border-separate border w-4">S.No</th>
-                <th className="border-separate border w-5/12">Item</th>
-                <th className="border-separate border w-36">Batch No</th>
-                <th className="border-separate border w-20">Expiry</th>
-                <th className="border-separate border w-20">Type</th>
-                <th className="border-separate border w-20">Pack</th>
-                <th className="border-separate border w-20">Rate</th>
-                <th className="border-separate border w-20">Quantity</th>
-                <th className="border-separate border w-20">Disount</th>
-                <th className="border-separate border">Amount</th>
-              </tr>
-            </thead>
-          </table>
+      <div className={`sticky top-72  ${showOverlay ? 'blur-lg' : ''}`}>
+        <div className="h-60 overflow-clip flex flex-col">
           <div className="w-full overflow-y-auto">
-            <table className="table-fixed  w-full border-separate border border-slate-400">
+            <table className="table-auto  w-full   ">
               <tbody>
                 {data.map((tableData) => {
                   return (
-                    <tr key={tableData.id}>
-                      <td className="border-separate border border-slate-400 text-center w-10">{tableData.id}</td>
-                      <td className="border-separate border border-slate-400 w-5/12">
-                        <input type="text" className="p-1 w-full" name="Item" onChange={handleSearchChange} />
+                    <tr key={tableData.id} className="border">
+                      <td className="text-center w-10">{tableData.id}</td>
+                      <td className="w-5/12 text-center">
+                        Paracetomol 650 mg
                       </td>
-                      <td className="border-separate border border-slate-400 p-1 text-center w-36">BRB12345</td>
-                      <td className="border-separate border border-slate-400 p-1 text-center w-20">05/29</td>
-                      <td className="border-separate border border-slate-400 p-1 w-20 text-center">Tab</td>
-                      <td className="border-separate border border-slate-400 p-1 w-20 text-center">{tableData.pack}</td>
-                      <td className="border-separate border border-slate-400 text-center  w-20">{tableData.rate}</td>
-                      <td className="border-separate border border-slate-400  w-20">
+                      <td className="  p-1 text-center w-36">BRB12345</td>
+                      <td className="  p-1 text-center w-20">05/29</td>
+                      <td className="  p-1 w-20 text-center">Tab</td>
+                      <td className="  p-1 w-20 text-center">{tableData.pack}</td>
+                      <td className="  text-center  w-20">{tableData.rate}</td>
+                      <td className="   w-20">
                         <input type="number" className="p-1 w-full text-center"
                           onChange={handleQuantChange(tableData.id)} name="quantity" />
                       </td>
-                      <td className="border-separate border border-slate-400 w-20">
+                      <td className="  w-20">
                         <input type="number" className="p-1 w-full text-center"
                           onChange={handleDisChange(tableData.id)} name="discount"
                           onKeyDown={handleKeyDown(tableData.id)} />
                       </td>
-                      <td className="border-separate border border-slate-400 text-center">{tableData.amount}</td>
+                      <td className="  text-center">{tableData.amount}</td>
                     </tr>
+                    
                   )
                 })}
               </tbody>
@@ -204,7 +189,7 @@ export default function Table() {
 
       </div>
 
-      <div className=" bg-slate-300 m-3 p-5 flex justify-between sticky bottom-1.5">
+      {/* <div className=" bg-slate-300 m-3 p-5 flex justify-between sticky bottom-1.5">
 
         <label className="font-bold">Terms and Conditions</label>
 
@@ -250,7 +235,7 @@ export default function Table() {
         <button onClick={() => handleChildUpdate(true)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
           Preview
         </button>
-      </div>
+      </div> */}
       {showOverlay && (<Print tdata={data}></Print>)}
       {/* <div ref={contentRef}>
 <Print></Print>
